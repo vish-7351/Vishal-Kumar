@@ -640,7 +640,22 @@
             .hero-bottom { font-size: clamp(30px, 8vw, 70px); }
         }
         @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .glass-panel { padding: 20px; border-radius: 15px; }
+            header { 
+                flex-direction: column; 
+                gap: 15px; 
+                text-align: center; 
+                padding: 20px 0;
+            }
+            .availability { margin-top: 10px; }
             .cards-grid, .process-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .featured-header { flex-direction: column; gap: 15px; text-align: center; }
+            .hero-top { font-size: clamp(35px, 15vw, 80px); line-height: 1; }
+            .hero-bottom { font-size: clamp(25px, 10vw, 60px); }
+            .hero { padding: 50px 0 80px; height: auto; min-height: 80vh; }
+            .stats { flex-direction: column; gap: 15px; }
+            .footer-info { flex-direction: column; gap: 10px; text-align: center; }
         }
     </style>
 </head>
