@@ -675,8 +675,8 @@
         }
 
         .project-card {
-            width: 200px;
-            height: 300px;
+            width: 230px;
+            height: 340px;
             border-radius: 20px;
             background: linear-gradient(180deg, rgba(30,10,60,0.4) 0%, rgba(10,5,20,0.8) 100%);
             border: 2px solid var(--glass-border);
@@ -685,11 +685,14 @@
             justify-content: flex-end;
             padding: 15px;
             text-align: left;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
             flex-shrink: 0;
+            opacity: 0.6;
+            transform: scale(0.9);
+            z-index: 1;
         }
 
         .project-card::before {
@@ -702,6 +705,7 @@
             background: linear-gradient(135deg, #00d4ff, #9d4edd);
             opacity: 0.6;
             z-index: 0;
+            transition: opacity 0.4s ease;
         }
         .project-card:nth-child(1)::before { background: linear-gradient(135deg, #00d4ff, #9d4edd); }
         .project-card:nth-child(2)::before { background: linear-gradient(135deg, #ff007f, #4a00e0); }
@@ -709,18 +713,23 @@
         .project-card:nth-child(4)::before { background: linear-gradient(135deg, #f093fb, #f5576c); }
         .project-card:nth-child(5)::before { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
 
-        .project-card.active {
-            width: 260px;
-            height: 380px;
-            transform: scale(1.05);
+        /* Default state: middle card is active when carousel is NOT hovered */
+        .carousel:not(:hover) .project-card:nth-child(3) {
+            transform: scale(1.15);
+            opacity: 1;
             z-index: 10;
             border-color: var(--primary);
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
         }
 
-        .project-card:not(.active) {
-            opacity: 0.6;
-            transform: scale(0.9);
+        /* Hover animation: card pops up */
+        .project-card:hover {
+            transform: scale(1.15);
+            opacity: 1;
+            z-index: 10;
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            cursor: pointer;
         }
 
         .project-card-content {
@@ -777,9 +786,14 @@
             }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
             .carousel { justify-content: flex-start; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px; }
-            .project-card { scroll-snap-align: center; }
-            .project-card.active { transform: scale(1); width: 240px; height: 350px; }
-            .project-card:not(.active) { transform: scale(1); opacity: 1; }
+            .project-card, .carousel:not(:hover) .project-card:nth-child(3), .project-card:hover { 
+                scroll-snap-align: center; 
+                transform: scale(1) !important; 
+                opacity: 1 !important; 
+                width: 200px !important; 
+                height: 300px !important; 
+                margin: 0 10px; 
+            }
             .availability { margin-top: 10px; }
             .cards-grid, .process-grid, .testimonials-grid { grid-template-columns: 1fr; }
             .featured-header { flex-direction: column; gap: 15px; text-align: center; }
@@ -1023,7 +1037,7 @@
                             <div class="project-stats"><span>👁 8.5K</span> <span>♥ 900</span></div>
                         </div>
                     </div>
-                    <div class="project-card active">
+                    <div class="project-card">
                         <div class="project-card-content">
                             <div class="project-title">Digital Decade</div>
                             <div class="project-author">by Anthony gorgioz</div>
